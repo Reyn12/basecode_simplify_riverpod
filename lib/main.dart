@@ -4,7 +4,15 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'routes/app_router.dart';
 
 void main() {
-  runApp(const ProviderScope(child: MainApp()));
+  runApp(
+    ProviderScope(
+      retry: (retryCount, error) {
+        if (retryCount >= 1) return null;
+        return const Duration(milliseconds: 300);
+      },
+      child: const MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {

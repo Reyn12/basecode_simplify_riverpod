@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../features/auth/models/auth_token.dart';
+import '../features/auth/models/login_result.dart';
 import '../features/products/models/product.dart';
 import 'dio_client_provider.dart';
 import 'api/converters/converter.dart';
@@ -29,7 +29,7 @@ class ApiService {
     return Converter.single(res.data, Product.fromJson);
   }
 
-  Future<AuthToken> login({
+  Future<LoginResult> login({
     required String email,
     required String password,
   }) async {
@@ -41,6 +41,6 @@ class ApiService {
       },
     );
 
-    return Converter.single(res.data, AuthToken.fromJson);
+    return Converter.single(res.data, LoginResult.fromJson);
   }
 }

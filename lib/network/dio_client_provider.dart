@@ -11,7 +11,7 @@ enum AppEnvironment {
 
 final APP_MODE = AppEnvironment.localMockoon;
 
-const String localBaseUrl = 'http://192.168.18.77';
+const String localBaseUrl = 'http://127.0.0.1:3003';
 const String stagingBaseUrl = 'https://api-staging.example.com';
 const String productionBaseUrl = 'https://api.example.com';
 
@@ -23,7 +23,11 @@ const String apiBaseUrlOverride =
 Dio dioClient(Ref ref) {
   final baseUrl = apiBaseUrlOverride.isNotEmpty
       ? apiBaseUrlOverride
-      : (appEnv == 'staging' ? stagingBaseUrl : productionBaseUrl);
+      : switch (APP_MODE) {
+          AppEnvironment.localMockoon => localBaseUrl,
+          AppEnvironment.staging => stagingBaseUrl,
+          AppEnvironment.production => productionBaseUrl,
+        };
 
   return Dio(
     BaseOptions(

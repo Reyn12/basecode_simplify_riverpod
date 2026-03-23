@@ -183,8 +183,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
           keyboardType: widget.keyboardType,
           textInputAction: widget.action,
           maxLength: widget.maxLength,
-          minLines: widget.minLine,
-          maxLines: widget.maxLine,
+          minLines: widget.isPassword ? 1 : widget.minLine,
+          maxLines: widget.isPassword ? 1 : widget.maxLine,
           obscureText: widget.isPassword ? obscure : false,
           decoration: InputDecoration(
             hintText: widget.hint,

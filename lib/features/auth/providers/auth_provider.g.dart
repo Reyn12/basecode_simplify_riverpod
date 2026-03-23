@@ -13,7 +13,7 @@ part of 'auth_provider.dart';
 final loginControllerProvider = LoginControllerProvider._();
 
 final class LoginControllerProvider
-    extends $AsyncNotifierProvider<LoginController, AuthToken?> {
+    extends $AsyncNotifierProvider<LoginController, LoginResult?> {
   LoginControllerProvider._()
     : super(
         from: null,
@@ -33,19 +33,19 @@ final class LoginControllerProvider
   LoginController create() => LoginController();
 }
 
-String _$loginControllerHash() => r'c33a2b9ebdcf212b016676c2df9beb19abd940b9';
+String _$loginControllerHash() => r'54e19093b19d5aa13ddcf6e291724551e3caa376';
 
-abstract class _$LoginController extends $AsyncNotifier<AuthToken?> {
-  FutureOr<AuthToken?> build();
+abstract class _$LoginController extends $AsyncNotifier<LoginResult?> {
+  FutureOr<LoginResult?> build();
   @$mustCallSuper
   @override
   void runBuild() {
-    final ref = this.ref as $Ref<AsyncValue<AuthToken?>, AuthToken?>;
+    final ref = this.ref as $Ref<AsyncValue<LoginResult?>, LoginResult?>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AsyncValue<AuthToken?>, AuthToken?>,
-              AsyncValue<AuthToken?>,
+              AnyNotifier<AsyncValue<LoginResult?>, LoginResult?>,
+              AsyncValue<LoginResult?>,
               Object?,
               Object?
             >;
