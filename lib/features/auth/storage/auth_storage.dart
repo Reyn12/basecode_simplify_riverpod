@@ -19,7 +19,7 @@ class AuthStorage {
   Future<void> saveLogin(LoginResult login) async {
     debugPrint('┌──────────────── AuthStorage.saveLogin ────────────────');
     debugPrint('│ Start simpan data login');
-    debugPrint('│ Token preview: ${login.token.length > 12 ? '${login.token.substring(0, 12)}...' : login.token}');
+    debugPrint('│ Token preview: ${login.token}');
     debugPrint('│ User id: ${login.user.id}');
     try {
       await _secureStorage.write(
@@ -30,6 +30,7 @@ class AuthStorage {
 
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString(userKey, jsonEncode(login.user.toJson()));
+      
       debugPrint('│ User tersimpan di shared preferences');
       debugPrint('└──────────────── Save login sukses ───────────────────');
     } catch (e, st) {

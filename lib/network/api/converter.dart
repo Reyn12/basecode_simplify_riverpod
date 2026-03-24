@@ -1,4 +1,4 @@
-import '../api_response.dart';
+import 'api_response.dart';
 
 class Converter {
   static List<T> list<T>(
@@ -10,6 +10,7 @@ class Converter {
     }
 
     final envelope = ApiEnvelope.fromJson(responseData);
+
     return envelope.requireList(fromJson);
   }
 
@@ -22,6 +23,7 @@ class Converter {
     }
 
     final envelope = ApiEnvelope.fromJson(responseData);
+    
     return envelope.requireSingle(fromJson);
   }
 }

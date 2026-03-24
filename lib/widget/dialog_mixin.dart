@@ -101,34 +101,5 @@ mixin DialogMixin {
       },
     );
   }
-
-  void listenFuture<T>({
-    required BuildContext context,
-    required AsyncValue<T> state,
-    void Function(T value)? onSuccess,
-    bool withLoading = false,
-  }) {
-    state.when(
-      loading: () {
-        successHandled = false;
-        lastErrorMessage = null;
-        if (withLoading) loadingState(context);
-      },
-      error: (error, _) {
-        successHandled = false;
-        errorState(context, error: error);
-      },
-      data: (value) {
-        if (withLoading && dialogShown) {
-          dialogShown = false;
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            LoadingDialog.hide(context);
-          });
-        }
-        lastErrorMessage = null;
-        onSuccess?.call(value);
-      },
-    );
-  }
 }
 

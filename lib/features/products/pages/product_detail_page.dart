@@ -1,3 +1,4 @@
+import 'package:basecode_simplify_riverpod/helper/ref_listen_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -15,6 +16,8 @@ class ProductDetailPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final productAsync = ref.watch(productDetailProvider(id: id));
+
+    ref.listenFuture(context, productDetailProvider(id: id));
 
     return Scaffold(
       appBar: AppBar(title: const Text('Detail Produk')),

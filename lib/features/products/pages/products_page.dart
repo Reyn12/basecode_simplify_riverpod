@@ -3,36 +3,25 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../helper/format_currency_helper.dart';
-import '../../../widget/dialog_mixin.dart';
-import '../models/product.dart';
+import '../../../helper/ref_listen_helper.dart';
 import '../providers/products_provider.dart';
 
-class ProductsPage extends ConsumerStatefulWidget {
+class ProductsPage extends ConsumerWidget {
   const ProductsPage({super.key});
 
   @override
-  ConsumerState<ProductsPage> createState() => _ProductsPageState();
-}
-
-class _ProductsPageState extends ConsumerState<ProductsPage> with DialogMixin {
-  Future<void> onRefresh() async {
-    lastErrorMessage = null;
-    successHandled = false;
-    final _ = await ref.refresh(productsProvider.future);
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final productsAsync = ref.watch(productsProvider);
-    listenFuture<List<Product>>(
-      context: context,
-      state: productsAsync,
-    );
+
+    ref.listenFuture(context, productsProvider);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Daftar Produk')),
       body: RefreshIndicator(
-        onRefresh: onRefresh,
+        onRefresh: () async {
+          ref.invalidate(productsProvider);
+          await ref.read(productsProvider.future);
+        },
         child: productsAsync.when(
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (_, __) => ListView(

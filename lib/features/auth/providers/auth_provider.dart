@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:riverpod/riverpod.dart';
-
 import '../../../network/api_service.dart';
 import '../models/login_result.dart';
 import '../storage/auth_storage.dart';

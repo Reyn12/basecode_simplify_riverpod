@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../features/auth/models/login_result.dart';
 import '../features/products/models/product.dart';
 import 'dio_client_provider.dart';
-import 'api/converters/converter.dart';
+import 'api/converter.dart';
 
 part 'api_service.g.dart';
 

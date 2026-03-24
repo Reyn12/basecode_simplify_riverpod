@@ -42,12 +42,12 @@ class _LoginPageState extends ConsumerState<LoginPage> with DialogMixin {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            // TODO: navigasi ke halaman sebelumnya.
-          },
-        ),
+        // leading: IconButton(
+        //   icon: const Icon(Icons.arrow_back),
+        //   onPressed: () {
+        //     // TODO: navigasi ke halaman sebelumnya.
+        //   },
+        // ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
